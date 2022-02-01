@@ -92,7 +92,7 @@ hoge
 切断面の座標をワールド座標のままモデルに渡してしまうと、  
 正常に切断の判定ができない。  
 
-<img src="Pictures/PositionConvert.png" width="800">  
+<img src="Pictures/CoordinateTransformation.png" width="800">  
 
 正常に切断の判定をするには、切断するモデルのローカル座標上に切断面を移す必要がある。  
 そのため、モデルのワールド行列の逆行列を乗算する。  
@@ -100,7 +100,7 @@ hoge
 切断面の一点、切断面の一点から切断面の向きへのベクトルを足した一点
 のそれぞれにワールド行列の逆行列を乗算し、ローカル座標での切断面の向きを計算する。  
   
-<img src="Pictures/PositionConvert2.png" width="800">  
+<img src="Pictures/CoordinateTransformation2.png" width="800">  
 
 ## 手順2.切断単位の説明  
 
