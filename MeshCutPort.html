@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MeshCutPort.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E4%B8%80%E5%88%80%E4%B8%A1%E6%96%AD"><strong>一刀両断</strong></h1>
+<h3 id="%E6%B2%B3%E5%8E%9F%E9%9B%BB%E5%AD%90%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E5%B0%82%E9%96%80%E5%AD%A6%E6%A0%A1">河原電子ビジネス専門学校</h3>
+<h3 id="%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%AF%E3%83%AA%E3%82%A8%E3%82%A4%E3%82%BF%E3%83%BC%E7%A7%912%E5%B9%B4-%E9%8C%A6%E7%B9%94%E9%9A%BC%E7%8E%8B">ゲームクリエイター科2年　錦織隼王</h3>
+<h1 id="%E7%9B%AE%E6%AC%A1"><strong>目次</strong></h1>
+<h3 id="1-%E4%BD%9C%E5%93%81%E6%A6%82%E8%A6%81">1. <a href="#overview">作品概要</a></h3>
+<h3 id="2-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E">2. <a href="#operation">操作説明</a></h3>
+<h3 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">3. <a href="#responsible">担当ソースコード</a></h3>
+<h3 id="4-%E6%94%B9%E9%80%A0%E3%81%97%E3%81%9F%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89">4. <a href="#enginecode">改造したエンジンのコード</a></h3>
+<h3 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E5%88%87%E6%96%AD">5. <a href="#meshcut">メッシュの切断</a></h3>
+<h3 id="5-%E3%81%93%E3%81%A0%E3%82%8F%E3%81%A3%E3%81%9F%E9%83%A8%E5%88%86">5. <a href="#commitment">こだわった部分</a></h3>
+<p><a id="overview"></a></p>
+<h1 id="1-%E4%BD%9C%E5%93%81%E6%A6%82%E8%A6%81"><strong>1. 作品概要</strong></h1>
+<ul>
+<li>
+<h2 id="%E4%B8%80%E5%88%80%E4%B8%A1%E6%96%AD">一刀両断</h2>
+<p><em>ゲーム説明</em></p>
+  <!--
+  動画挿入
+  <iframe width="640" height="365" src="https://www.youtube.com/embed/kX87_XVBVlo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+  -->
+<p><strong>紹介動画</strong></p>
+</li>
+<li>
+<h2 id="%E4%BD%BF%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3">使用ゲームエンジン</h2>
+<p>学校内製エンジンを改造して使用</p>
+</li>
+<li>
+<h2 id="%E4%BD%BF%E7%94%A8%E3%83%84%E3%83%BC%E3%83%AB">使用ツール</h2>
+<p>Visual Studio 2019<br>
+Visual Studio Code<br>
+3ds Max 2021<br>
+Adobe Photoshop Elements 2020<br>
+Git</p>
+</li>
+<li>
+<h2 id="%E4%BD%BF%E7%94%A8%E8%A8%80%E8%AA%9E">使用言語</h2>
+<p>C++<br>
+HLSL</p>
+</li>
+<li>
+<h2 id="%E4%BD%BF%E7%94%A8%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA">使用ライブラリ</h2>
+<p>BulletPhysics<br>
+EffekSeer<br>
+DirectXTK12</p>
+</li>
+<li>
+<h2 id="%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83">開発環境</h2>
+<p>Windows10<br>
+DirectX12</p>
+</li>
+<li>
+<h2 id="%E5%88%B6%E4%BD%9C%E4%BA%BA%E6%95%B0">制作人数</h2>
+<p>1人</p>
+</li>
+<li>
+<h2 id="%E9%96%8B%E7%99%BA%E6%9C%9F%E9%96%93">開発期間</h2>
+<p>2021年9月～</p>
+</li>
+</ul>
+<p><a id="operation"></a></p>
+<h1 id="2-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E"><strong>2. 操作説明</strong></h1>
+<p><em>操作説明</em></p>
+<!--
+<img src="Pictures/Control1.png" width="720">   
+-->
+<p><a id="responsible"></a></p>
+<h1 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><strong>3. 担当ソースコード</strong></h1>
+<details open>
+<summary>担当ソースコード</summary>
+<ul>
+<li>hoge.cpp</li>
+</ul>
+</details>
+<p><a id="enginecode"></a></p>
+<h1 id="4-%E6%94%B9%E9%80%A0%E3%81%97%E3%81%9F%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89"><strong>4. 改造したエンジンのコード</strong></h1>
+<details open>
+<summary>改造したエンジンのコード</summary>
+<ul>
+<li>hoge.cpp<br>
+hoge</li>
+</ul>
+</details>
+<p><a id="splitview"></a></p>
+<h1 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E5%88%87%E6%96%AD"><strong>5. メッシュ切断</strong></h1>
+<h1 id="%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">全体の流れ</h1>
+<img src="Pictures/SequenceDiagram.png" width="800">   
+<h1 id="%E5%90%84%E6%89%8B%E9%A0%86%E3%81%AE%E8%A9%B3%E7%B4%B0">各手順の詳細</h1>
+<h2 id="%E6%89%8B%E9%A0%861%E5%88%87%E6%96%AD%E6%BA%96%E5%82%99%E5%88%87%E6%96%AD%E9%9D%A2%E3%81%AE%E5%BA%A7%E6%A8%99%E7%B3%BB%E3%81%AE%E5%A4%89%E6%8F%9B">手順1.切断準備_切断面の座標系の変換</h2>
+<p>必要入力<br>
+切断面の向き<br>
+切断面の一点</p>
+<p>まず、モデルの情報はモデル内部にローカル座標系で保存されているため、<br>
+切断するモデルのローカル座標上に切断面を移す必要がある。<br>
+そのため、モデルのワールド行列の逆行列を乗算する。<br>
+切断面の向きにそのまま乗算すると結果がおかしくなるため、<br>
+切断面の一点、切断面の一点から切断面の向きへのベクトルを足した一点
+のそれぞれにワールド行列の逆行列を乗算し、ローカル座標での切断面の向きを計算する。</p>
+<p>エンジンにある、モデルを構成する頂点バッファ、インデックスバッファ、マテリアルを保持する<br>
+TkmFileクラス内で、MeshDividerクラスを使用することによって分割を行う。</p>
+<p><em>説明画像</em></p>
+<h2 id="%E6%89%8B%E9%A0%862%E5%88%87%E6%96%AD%E5%8D%98%E4%BD%8D%E3%81%AE%E8%AA%AC%E6%98%8E">手順2.切断単位の説明</h2>
+<p>モデルを構成するメッシュのうち、メッシュパーツごとに分割を行う。<br>
+メッシュパーツを構成するポリゴンのうち、マテリアルごとに分割を行う。</p>
+<p><em>説明画像</em></p>
+<h2 id="%E6%89%8B%E9%A0%863%E3%83%9D%E3%83%AA%E3%82%B4%E3%83%B3%E3%81%94%E3%81%A8%E3%81%AE%E5%88%86%E5%89%B2%E6%BA%96%E5%82%99">手順3.ポリゴンごとの分割準備</h2>
+<p>マテリアルごとに用意されたインデックスバッファの配列を順番に見ていく。<br>
+0番目のインデックスバッファを走査<br>
+今回モデルのポリゴンは3頂点で構成されているため、インデックスバッファの中を3要素ずつ見ていく。</p>
+<p><em>説明画像</em></p>
+<h2 id="%E6%89%8B%E9%A0%864%E3%83%9D%E3%83%AA%E3%82%B4%E3%83%B3%E3%81%AE%E5%88%86%E5%89%B2">手順4.ポリゴンの分割</h2>
+<p>TriangleDividerクラスで行われる。
+ポリゴンの3点が、切断面の裏・表・切断面上のどこに位置するかを調べる。</p>
+<p>切断面の一点から、各点へのベクトルを求める。<br>
+それぞれのベクトルと、切断面の法線の向きの内積を計算する。<br>
+内積の結果が0より大きい-切断面の表側に点がある。<br>
+内積の結果が0より小さい-切断面の裏側に点がある。<br>
+内積の結果が0-切断面上に点がある。</p>
+<p>この計算に従い、3点をグループ分けする。
+グループ分けの結果によって、ポリゴンがどう分割されているかを判定する。</p>
+<p>考えられるパターン<br>
+表側に頂点が3つある　非分割<br>
+裏側に頂点が3つある　非分割<br>
+表側に頂点が2つ、面上に頂点が1つある　非分割<br>
+(表側に頂点が3つある時と同様に扱う)<br>
+裏側に頂点が2つ、面上に頂点が1つある　非分割<br>
+(裏側に頂点が3つある時と同様に扱う)<br>
+面上に頂点が3つある　特殊<br>
+(※どちら側にも3頂点があるとして扱う)<br>
+表側に頂点が2つ、裏側に頂点が1つ　分割<br>
+裏側に頂点が2つ、表側に頂点が1つ　分割<br>
+表側、裏側、面上にそれぞれ頂点が1つ　分割</p>
+<p><em>説明画像</em></p>
+<p>ポリゴンが分割されている場合、3点を結んだ線分と切断面の交差地点を<br>
+求める。</p>
+<p><em>説明画像</em></p>
+<p>パターンに合わせて適切に表側、裏側のインデックスバッファに新しくできた頂点を挿入するTriangleMakerクラスの関数を呼び出す。<br>
+TriangleMakerクラスは、パターンの見落としや、新しいパターンが増えた時のために、<br>
+抽象クラスであるITriangleMakerを継承して作成している。</p>
+
+</body>
+</html>
