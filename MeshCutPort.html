@@ -435,7 +435,133 @@ DirectX12</p>
 <details open>
 <summary>担当ソースコード</summary>
 <ul>
-<li>hoge.cpp</li>
+<li>AnimationState.cpp</li>
+<li>AnimationState.h</li>
+<li>AttackTutorial.cpp</li>
+<li>AttackTutorial.h</li>
+<li>AxisCalculator.cpp</li>
+<li>AxisCalculator.h</li>
+<li>BackGround.cpp</li>
+<li>BackGround.h</li>
+<li>BossTank.cpp</li>
+<li>BossTank.h</li>
+<li>BossTankBehave.cpp</li>
+<li>BossTankBehave.h</li>
+<li>BossTankCollision.cpp</li>
+<li>BossTankCollision.h</li>
+<li>BossTankDisplay.cpp</li>
+<li>BossTankDisplay.h</li>
+<li>BossTankFinishCommand.cpp</li>
+<li>BossTankFinishCommand.h</li>
+<li>BossTankStatus.h</li>
+<li>BossTankTasks.cpp</li>
+<li>BossTankTasks.h</li>
+<li>CommandInput.cpp</li>
+<li>CommandInput.h</li>
+<li>CutDummy.cpp</li>
+<li>CutDummy.h</li>
+<li>CutSurfaceMaker.cpp</li>
+<li>CutSurfaceMaker.h</li>
+<li>DashTutorial.cpp</li>
+<li>DashTutorial.h</li>
+<li>DirectionLight.cpp</li>
+<li>DirectionLight.h</li>
+<li>Door.cpp</li>
+<li>Door.h</li>
+<li>EnemyMisile.cpp</li>
+<li>EnemyMissile.h</li>
+<li>EnemyMissileMove.cpp</li>
+<li>EnemyMissileMove.h</li>
+<li>EnemyMissileRotation.cpp</li>
+<li>EnemyMissileRotation.h</li>
+<li>EnemyRock.cpp</li>
+<li>EnemyRock.h</li>
+<li>EnemyTask.cpp</li>
+<li>EnemyTask.h</li>
+<li>Explosion.cpp</li>
+<li>Explosion.h</li>
+<li>Fade.cpp</li>
+<li>Fade.h</li>
+<li>FontRender.cpp</li>
+<li>FontRender.h</li>
+<li>GameOverNotifier.cpp</li>
+<li>GameOverNotifier.h</li>
+<li>GameScene.cpp</li>
+<li>GameScene.h</li>
+<li>GameSceneBGM.cpp</li>
+<li>GameSceneBGM.h</li>
+<li>HealItem.cpp</li>
+<li>HealItem.h</li>
+<li>ITriangleMaker.h</li>
+<li>LightManager.cpp</li>
+<li>LightManager.h</li>
+<li>MeshDivider.cpp</li>
+<li>MeshDivider.h</li>
+<li>MiniEnemy.cpp</li>
+<li>MiniEnemy.h</li>
+<li>ModelCutManager.cpp</li>
+<li>ModelCutManager.h</li>
+<li>OneOnPlaneTriangle.cpp</li>
+<li>OneOnPlaneTriangle.h</li>
+<li>Player.cpp</li>
+<li>Player.h</li>
+<li>PlayerAnimation.cpp</li>
+<li>PlayerAnimation.h</li>
+<li>PlayerAnimationInitializer.cpp</li>
+<li>PlayerAnimationInitializer.h</li>
+<li>PlayerAnimationParam.h</li>
+<li>PlayerAttack.cpp</li>
+<li>PlayerAttack.h</li>
+<li>PlayerAttackAnimationState.cpp</li>
+<li>PlayerAttackAnimationState.h</li>
+<li>PlayerAttackSound.cpp</li>
+<li>PlayerAttackSound.h</li>
+<li>PlayerCamera.cpp</li>
+<li>PlayerCamera.h</li>
+<li>PlayerCut.cpp</li>
+<li>PlayerCut.h</li>
+<li>PlayerDisplay.cpp</li>
+<li>PlayerDisplay.h</li>
+<li>PlayerMove.cpp</li>
+<li>PlayerMove.h</li>
+<li>PlayerMoveAnimationState.cpp</li>
+<li>PlayerMoveAnimationState.h</li>
+<li>PointLight.cpp</li>
+<li>PointLight.h</li>
+<li>ProductsDeleter.cpp</li>
+<li>ProductsDeleter.h</li>
+<li>RenderingEngine.cpp</li>
+<li>RenderingEngine.h</li>
+<li>ShadowRender.cpp</li>
+<li>ShadowRender.h</li>
+<li>SkinModelRender.cpp</li>
+<li>SkinModelRender.h</li>
+<li>SpotLight.cpp</li>
+<li>SpotLight.h</li>
+<li>SpriteRender.cpp</li>
+<li>SpriteRender.h</li>
+<li>StepObject.cpp</li>
+<li>StepObject.h</li>
+<li>ThreeOnBackTriangle.cpp</li>
+<li>ThreeOnBackTriangle.h</li>
+<li>ThreeOnFrontTriangle.cpp</li>
+<li>ThreeOnFrontTriangle.h</li>
+<li>ThreeOnPlaneTriangle.cpp</li>
+<li>ThreeOnPlaneTriangle.h</li>
+<li>TitleDoor.cpp</li>
+<li>TitleDoor.h</li>
+<li>TitleScene.cpp</li>
+<li>TitleScene.h</li>
+<li>TriangleDivider.cpp</li>
+<li>TriangleDivider.h</li>
+<li>TriangleDividerStruct.h</li>
+<li>TriangleMakerHeader.h</li>
+<li>TwoDTriangulate.cpp</li>
+<li>TwoDTriangulate.h</li>
+<li>TwoOnBackTriangle.cpp</li>
+<li>TwoOnBackTriangle.h</li>
+<li>TwoOnFrontTriangle.cpp</li>
+<li>TwoOnFrontTriangle.h</li>
 </ul>
 </details>
 <p><a id="enginecode"></a></p>
@@ -447,30 +573,31 @@ DirectX12</p>
 hoge</li>
 </ul>
 </details>
-<p><a id="splitview"></a></p>
+<p><a id="meshcut"></a></p>
 <h1 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E5%88%87%E6%96%AD"><strong>5. メッシュ切断</strong></h1>
-<h1 id="%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">全体の流れ</h1>
+<h1 id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AB%E3%82%88%E3%82%8B%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">シーケンス図による全体の流れ</h1>
 <img src="Pictures/SequenceDiagram.png" width="800">   
 <h1 id="%E5%90%84%E6%89%8B%E9%A0%86%E3%81%AE%E8%A9%B3%E7%B4%B0">各手順の詳細</h1>
 <h2 id="%E6%89%8B%E9%A0%861%E5%88%87%E6%96%AD%E6%BA%96%E5%82%99%E5%88%87%E6%96%AD%E9%9D%A2%E3%81%AE%E5%BA%A7%E6%A8%99%E7%B3%BB%E3%81%AE%E5%A4%89%E6%8F%9B">手順1.切断準備_切断面の座標系の変換</h2>
 <p>必要入力<br>
-切断面の向き<br>
-切断面の一点</p>
+切断面上の一点<br>
+切断面の法線ベクトル</p>
 <p>まず、モデルの情報はモデル内部にローカル座標系で保存されており、モデルを表示する際にワールド行列を乗算してワールド座標に変換されているため、<br>
 切断面の座標をワールド座標のままモデルに渡してしまうと、<br>
-正常に分割の判定ができない。</p>
-<img src="Pictures/PositionConvert.png" width="800">  
-<p>そのため、切断するモデルのローカル座標上に切断面を移す必要がある。<br>
+正常に切断の判定ができない。</p>
+<img src="Pictures/CoordinateTransformation.png" width="800">  
+<p>正常に切断の判定をするには、切断するモデルのローカル座標上に切断面を移す必要がある。<br>
 そのため、モデルのワールド行列の逆行列を乗算する。<br>
 切断面の向きにそのまま乗算すると結果がおかしくなるため、<br>
 切断面の一点、切断面の一点から切断面の向きへのベクトルを足した一点
 のそれぞれにワールド行列の逆行列を乗算し、ローカル座標での切断面の向きを計算する。</p>
-<p>エンジンにある、モデルを構成する頂点バッファ、インデックスバッファ、マテリアルを保持する<br>
-TkmFileクラス内で、MeshDividerクラスを使用することによって分割を行う。</p>
-<p><em>説明画像</em></p>
+<img src="Pictures/CoordinateTransformation2.png" width="800">  
 <h2 id="%E6%89%8B%E9%A0%862%E5%88%87%E6%96%AD%E5%8D%98%E4%BD%8D%E3%81%AE%E8%AA%AC%E6%98%8E">手順2.切断単位の説明</h2>
-<p>モデルを構成するメッシュのうち、メッシュパーツごとに分割を行う。<br>
-メッシュパーツを構成するポリゴンのうち、マテリアルごとに分割を行う。</p>
+<p>エンジンにある、モデルを構成する頂点バッファ、インデックスバッファ、マテリアルを保持する<br>
+TkmFileクラス内で、MeshDividerクラスを使用することによって分割を行う。<br>
+モデルを構成する要素のうち、メッシュパーツごとに切断を行う。<br>
+メッシュパーツを構成するメッシュのうち、マテリアルごとに切断を行う。<br>
+メッシュを構成するポリゴンごとに切断を行う。</p>
 <p><em>説明画像</em></p>
 <h2 id="%E6%89%8B%E9%A0%863%E3%83%9D%E3%83%AA%E3%82%B4%E3%83%B3%E3%81%94%E3%81%A8%E3%81%AE%E5%88%86%E5%89%B2%E6%BA%96%E5%82%99">手順3.ポリゴンごとの分割準備</h2>
 <p>マテリアルごとに用意されたインデックスバッファの配列を順番に見ていく。<br>
@@ -488,17 +615,13 @@ TkmFileクラス内で、MeshDividerクラスを使用することによって�
 <p>この計算に従い、3点をグループ分けする。
 グループ分けの結果によって、ポリゴンがどう分割されているかを判定する。</p>
 <p>考えられるパターン<br>
-表側に頂点が3つある　非分割<br>
-裏側に頂点が3つある　非分割<br>
-表側に頂点が2つ、面上に頂点が1つある　非分割<br>
-(表側に頂点が3つある時と同様に扱う)<br>
-裏側に頂点が2つ、面上に頂点が1つある　非分割<br>
-(裏側に頂点が3つある時と同様に扱う)<br>
-面上に頂点が3つある　特殊<br>
-(※どちら側にも3頂点があるとして扱う)<br>
+表側に頂点があり、裏側に頂点がない　非分割<br>
+裏側に頂点があり、表側に頂点がない　非分割<br>
 表側に頂点が2つ、裏側に頂点が1つ　分割<br>
 裏側に頂点が2つ、表側に頂点が1つ　分割<br>
-表側、裏側、面上にそれぞれ頂点が1つ　分割</p>
+表側、裏側、面上にそれぞれ頂点が1つ　分割<br>
+面上に頂点が3つある　特殊<br>
+(※どちら側にも3頂点があるとして扱う)</p>
 <p><em>説明画像</em></p>
 <p>ポリゴンが分割されている場合、3点を結んだ線分と切断面の交差地点を<br>
 求める。</p>
