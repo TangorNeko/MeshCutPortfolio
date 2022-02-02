@@ -569,8 +569,26 @@ DirectX12</p>
 <details open>
 <summary>改造したエンジンのコード</summary>
 <ul>
-<li>hoge.cpp<br>
-hoge</li>
+<li>GameObjectManager.cpp、GameObjectManager.h<br>
+スプライト用の描画ステップを追加</li>
+<li>GraphicsEngine.cpp<br>
+FPSの固定処理を追加</li>
+<li>IGameObject.h<br>
+ゲームオブジェクトに紐付けられたモデルが切断された際に呼ばれる関数を追加</li>
+<li>Material.cpp、Material.h<br>
+シェーダーにリソースバンクを使用するよう変更</li>
+<li>Model.cpp、Model.h<br>
+モデルの分割関数を追加<br>
+モデルのコピー関数を追加</li>
+<li>TkmFile.cpp、TkmFile.h<br>
+モデルの分割関数を追加<br>
+マテリアルのコピー関数を追加<br>
+頂点の線形補間関数を追加<br>
+メッシュを直に追加する関数を追加</li>
+<li>Vector.h<br>
+ベクトル型を連想配列に追加できるように各要素の値をハッシュ値に変換し、<br>
+その値を比較することによる比較演算子の追加<br>
+4次元ベクトルの線形補完関数の追加</li>
 </ul>
 </details>
 <p><a id="meshcut"></a></p>

@@ -194,9 +194,26 @@
 <details open>
 <summary>改造したエンジンのコード</summary>
 
-* hoge.cpp  
-hoge  
-
+* GameObjectManager.cpp、GameObjectManager.h  
+スプライト用の描画ステップを追加  
+* GraphicsEngine.cpp  
+FPSの固定処理を追加
+* IGameObject.h  
+ゲームオブジェクトに紐付けられたモデルが切断された際に呼ばれる関数を追加  
+* Material.cpp、Material.h  
+シェーダーにリソースバンクを使用するよう変更
+* Model.cpp、Model.h  
+モデルの分割関数を追加  
+モデルのコピー関数を追加    
+* TkmFile.cpp、TkmFile.h  
+モデルの分割関数を追加  
+マテリアルのコピー関数を追加  
+頂点の線形補間関数を追加  
+メッシュを直に追加する関数を追加
+* Vector.h  
+ベクトル型を連想配列に追加できるように各要素の値をハッシュ値に変換し、  
+その値を比較することによる比較演算子の追加  
+4次元ベクトルの線形補完関数の追加  
 
 </details>
 
