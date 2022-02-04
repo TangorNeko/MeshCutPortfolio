@@ -8,14 +8,16 @@
 ### 3. [担当ソースコード](#responsible)
 ### 4. [改造したエンジンのコード](#enginecode)
 ### 5. [メッシュの切断](#meshcut)
-### 6. [こだわった部分](#commitment)
+### 6. [ディザリング透過](#dithering)
+### 7. [こだわった部分](#commitment)
 
 <a id="overview"></a>
 
 # **1. 作品概要**
-* ## 一刀両断
-    <img src="Pictures/IttouRyoudanLogo.png" width="800">   
-    **紹介動画**
+* ## 一刀両断  
+侍を操作し、扉に敵にミサイルに、  
+すべてを斬り伏せながら進んでいくゲームです。
+<img src="Pictures/IttouRyoudanLogo.png" width="800">   
 * ## 使用ゲームエンジン
     学校内製エンジンを改造して使用
 * ## 使用ツール
@@ -41,9 +43,11 @@
 
 <a id="operation"></a>
 
-# **2. 操作説明**
-<img src="Pictures/NormalControl.png" width="720">    
+# **2. 操作説明**  
+  
+<img src="Pictures/NormalControl.png" width="720">   
 <img src="Pictures/CutModeControl.png" width="720">   
+
 <a id="responsible"></a>
 
 # **3. 担当ソースコード**  
@@ -214,6 +218,9 @@ FPSの固定処理を追加
 
 # **5. メッシュ切断** 
 
+技術的な挑戦として、モデル内のメッシュを分割する  
+メッシュ切断を実装した。  
+
 # シーケンス図による全体の流れ  
 <img src="Pictures/SequenceDiagram.png" width="800">   
 
@@ -378,8 +385,30 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 以上で既存メッシュの切断、切断面の生成が終了となり、
 モデルの切断が終了となる。
 
+<a id="dithering"></a>
+# **6.ディザリング透過**  
+
+切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。  
+<img src="Pictures/DoorDithering.png" width="800">   
+
+まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。  
+<img src="Pictures/DitherPattern.png" width="426">  
+シェーダー側でピクセルを描画する際、描画先のスクリーン座標のX座標とY座標を4で割った余剰を求め、  
+全ピクセルをX座標ごとに4パターン、Y座標ごとに4パターンの計16パターンに分類しディザパターンに当てはめる。  
+<img src="Pictures/DitherScreenPos.png" width="749">  
+CPU側からディザリング透過の強さを定数バッファで送り、描画先ピクセルのディザパターンの値より  
+ディザリング透過の強さの値の方が大きかった場合、ピクセルキルを行う。  
+ディザリング透過の強さを少しずつ増加させていく事で徐々にディザリング透過が進行していく。  
+<img src="Pictures/DitherAfter.png" width="749">  
+
 <a id="commitment"></a>
-# **6. こだわった部分**
+# **7. こだわった部分**  
+
+このゲームは敵の車体やミサイルなどを自由に切断できる事が他のゲームと違う一番の特徴である。  
+切断機能を体験してもらうため、小さな敵やミサイルは通常攻撃で切断可能にし、  
+ボス戦ではじっくりと方向を定めて切断ができるようにした。  
+<img src="Pictures/BossCutPrepare.png" width="800">   
+<img src="Pictures/BossCut.png" width="800">   
 
 
 
