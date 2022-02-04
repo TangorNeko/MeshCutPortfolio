@@ -374,16 +374,19 @@ code {
 <h3 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89">3. <a href="#responsible">担当ソースコード</a></h3>
 <h3 id="4-%E6%94%B9%E9%80%A0%E3%81%97%E3%81%9F%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89">4. <a href="#enginecode">改造したエンジンのコード</a></h3>
 <h3 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E3%81%AE%E5%88%87%E6%96%AD">5. <a href="#meshcut">メッシュの切断</a></h3>
-<h3 id="6-%E3%81%93%E3%81%A0%E3%82%8F%E3%81%A3%E3%81%9F%E9%83%A8%E5%88%86">6. <a href="#commitment">こだわった部分</a></h3>
+<h3 id="6-%E3%83%87%E3%82%A3%E3%82%B6%E3%83%AA%E3%83%B3%E3%82%B0%E9%80%8F%E9%81%8E">6. <a href="#dithering">ディザリング透過</a></h3>
+<h3 id="7-%E3%81%93%E3%81%A0%E3%82%8F%E3%81%A3%E3%81%9F%E9%83%A8%E5%88%86">7. <a href="#commitment">こだわった部分</a></h3>
 <p><a id="overview"></a></p>
 <h1 id="1-%E4%BD%9C%E5%93%81%E6%A6%82%E8%A6%81"><strong>1. 作品概要</strong></h1>
 <ul>
 <li>
 <h2 id="%E4%B8%80%E5%88%80%E4%B8%A1%E6%96%AD">一刀両断</h2>
 </li>
-<li>
-<img src="Pictures/IttouRyoudanLogo.png" width="800">   
-</li>
+</ul>
+<p>侍を操作し、扉に敵にミサイルに、<br>
+すべてを斬り伏せながら進んでいくゲームです。
+<img src="Pictures/IttouRyoudanLogo.png" width="800"></p>
+<ul>
 <li>
 <h2 id="%E4%BD%BF%E7%94%A8%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3">使用ゲームエンジン</h2>
 学校内製エンジンを改造して使用</li>
@@ -416,8 +419,8 @@ DirectX12</li>
 </ul>
 <p><a id="operation"></a></p>
 <h1 id="2-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E"><strong>2. 操作説明</strong></h1>
-<img src="Pictures/NormalControl.png" width="800">   
-<img src="Pictures/CutModeControl.png" width="800">   
+<img src="Pictures/NormalControl.png" width="720">   
+<img src="Pictures/CutModeControl.png" width="720">   
 <p><a id="responsible"></a></p>
 <h1 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><strong>3. 担当ソースコード</strong></h1>
 <details close>
@@ -581,6 +584,8 @@ FPSの固定処理を追加</li>
 </details>
 <p><a id="meshcut"></a></p>
 <h1 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E5%88%87%E6%96%AD"><strong>5. メッシュ切断</strong></h1>
+<p>技術的な挑戦として、モデル内のメッシュを分割する<br>
+メッシュ切断を実装した。</p>
 <h1 id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AB%E3%82%88%E3%82%8B%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">シーケンス図による全体の流れ</h1>
 <img src="Pictures/SequenceDiagram.png" width="800">   
 <h1 id="%E5%90%84%E6%89%8B%E9%A0%86%E3%81%AE%E8%A9%B3%E7%B4%B0">各手順の詳細</h1>
@@ -700,11 +705,24 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 切断面の裏側の頂点バッファの法線は切断面の法線を使用する。</p>
 <p>以上で既存メッシュの切断、切断面の生成が終了となり、
 モデルの切断が終了となる。</p>
+<p><a id="dithering"></a></p>
+<h1 id="6%E3%83%87%E3%82%A3%E3%82%B6%E3%83%AA%E3%83%B3%E3%82%B0%E9%80%8F%E9%81%8E"><strong>6.ディザリング透過</strong></h1>
+<p>切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。<br>
+<img src="Pictures/DoorDithering.png" width="800"></p>
+<p>まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。<br>
+<img src="Pictures/DitherPattern.png" width="426"><br>
+シェーダー側でピクセルを描画する際、描画先のスクリーン座標のX座標とY座標を4で割った余剰を求め、<br>
+全ピクセルをX座標ごとに4パターン、Y座標ごとに4パターンの計16パターンに分類しディザパターンに当てはめる。<br>
+<img src="Pictures/DitherScreenPos.png" width="749"><br>
+CPU側からディザリング透過の強さを定数バッファで送り、描画先ピクセルのディザパターンの値より<br>
+ディザリング透過の強さの値の方が大きかった場合、ピクセルキルを行う。<br>
+ディザリング透過の強さを少しずつ増加させていく事で徐々にディザリング透過が進行していく。<br>
+<img src="Pictures/DitherAfter.png" width="749"></p>
 <p><a id="commitment"></a></p>
-<h1 id="6-%E3%81%93%E3%81%A0%E3%82%8F%E3%81%A3%E3%81%9F%E9%83%A8%E5%88%86"><strong>6. こだわった部分</strong></h1>
-<p>このゲームは敵の車体やミサイルなどを自由に切断できる事が他のゲームと違う一番の特徴です。<br>
+<h1 id="7-%E3%81%93%E3%81%A0%E3%82%8F%E3%81%A3%E3%81%9F%E9%83%A8%E5%88%86"><strong>7. こだわった部分</strong></h1>
+<p>このゲームは敵の車体やミサイルなどを自由に切断できる事が他のゲームと違う一番の特徴である。<br>
 切断機能を体験してもらうため、小さな敵やミサイルは通常攻撃で切断可能にし、<br>
-ボス戦ではじっくりと方向を定めて切断ができるようにしました。<br>
+ボス戦ではじっくりと方向を定めて切断ができるようにした。<br>
 <img src="Pictures/BossCutPrepare.png" width="800"><br>
 <img src="Pictures/BossCut.png" width="800"></p>
 
