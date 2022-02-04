@@ -45,10 +45,9 @@
 
 # **2. 操作説明**  
   
-<img src="Pictures/NormalControl.png" width="720">   
-<img src="Pictures/CutModeControl.png" width="720">   
-
-<a id="responsible"></a>
+<img src="Pictures/NormalControl.png" width="720">  
+<img src="Pictures/CutModeControl.png" width="720">  
+<a id="responsible"></a>  
 
 # **3. 担当ソースコード**  
 
@@ -329,7 +328,7 @@ TriangleMakerクラスは、パターンの見落としや、新しいパター�
 ([http://www.prefield.com/algorithm/geometry/triangulate.html](http://www.prefield.com/algorithm/geometry/triangulate.html))  
 を利用している。  
 このプログラムでは、切断面を構成する頂点を反時計回りに並び替える必要がある。  
-切断面上の点のみが得られていた場合、切断面の形を一つに決定することができない。 
+切断面上の点のみが得られていた場合、切断面の形を一つに決定することができない。  
 <img src="Pictures/WhichCutSurface.png" width="693">   
 
 そこで、ポリゴンを分割する時に作成した切断面上のインデックスのペアを使用する。  
