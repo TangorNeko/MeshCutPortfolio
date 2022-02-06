@@ -46,6 +46,9 @@
 # **2. 操作説明**  
   
 <img src="Pictures/NormalControl.png" width="720">  
+
+<br>
+
 <img src="Pictures/CutModeControl.png" width="720">  
 <a id="responsible"></a>  
 
@@ -220,6 +223,8 @@ FPSの固定処理を追加
 技術的な挑戦として、モデル内のメッシュを分割する  
 メッシュ切断を実装した。  
 
+<iframe width="640" height="365" src="https://www.youtube.com/embed/b5prSEbxukI?rel = 0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
 # シーケンス図による全体の流れ  
 <img src="Pictures/SequenceDiagram.png" width="800">   
 
@@ -370,6 +375,8 @@ Z軸の値がすべて同じになるため、XY軸の値のみを使う事で2D
 AからBへのベクトルとAからCへのベクトルの外積を計算し、結果が0より大きければ反時計回りである。
 
 <img src="Pictures/IsCCW.png" width="800">  
+
+<br>
 時計回りと判定された場合、リンクの順番を反転させる。  
 
 ここまでの操作で、三角形分割プログラムが使用できる  
@@ -389,6 +396,15 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 
 切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。  
 <img src="Pictures/DoorDithering.png" width="800">   
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FzM-ni0sLRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
+通常の透過処理  
+<img src="Pictures/Transparent.gif" width="600">  
+
+ディザリングによる透過処理  
+<img src="Pictures/Dithering.gif" width="600">  
+
 
 まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。  
 <img src="Pictures/DitherPattern.png" width="426">  

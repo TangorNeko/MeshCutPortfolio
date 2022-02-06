@@ -420,6 +420,7 @@ DirectX12</li>
 <p><a id="operation"></a></p>
 <h1 id="2-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E"><strong>2. 操作説明</strong></h1>
 <img src="Pictures/NormalControl.png" width="720">  
+<br>
 <img src="Pictures/CutModeControl.png" width="720">  
 <a id="responsible"></a>  
 <h1 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><strong>3. 担当ソースコード</strong></h1>
@@ -586,6 +587,7 @@ FPSの固定処理を追加</li>
 <h1 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E5%88%87%E6%96%AD"><strong>5. メッシュ切断</strong></h1>
 <p>技術的な挑戦として、モデル内のメッシュを分割する<br>
 メッシュ切断を実装した。</p>
+<iframe width="640" height="365" src="https://www.youtube.com/embed/b5prSEbxukI?rel = 0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 <h1 id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AB%E3%82%88%E3%82%8B%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">シーケンス図による全体の流れ</h1>
 <img src="Pictures/SequenceDiagram.png" width="800">   
 <h1 id="%E5%90%84%E6%89%8B%E9%A0%86%E3%81%AE%E8%A9%B3%E7%B4%B0">各手順の詳細</h1>
@@ -695,6 +697,7 @@ Z軸の値がすべて同じになるため、XY軸の値のみを使う事で2D
 リンクを元にその前後にある頂点も取得し、前にある頂点をA、後にある頂点をCとする。<br>
 AからBへのベクトルとAからCへのベクトルの外積を計算し、結果が0より大きければ反時計回りである。</p>
 <img src="Pictures/IsCCW.png" width="800">  
+<br>
 時計回りと判定された場合、リンクの順番を反転させる。  
 <p>ここまでの操作で、三角形分割プログラムが使用できる<br>
 2D座標系で、頂点が反時計回りであるという条件を満たしたため、<br>
@@ -709,6 +712,11 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 <h1 id="6%E3%83%87%E3%82%A3%E3%82%B6%E3%83%AA%E3%83%B3%E3%82%B0%E9%80%8F%E9%81%8E"><strong>6.ディザリング透過</strong></h1>
 <p>切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。<br>
 <img src="Pictures/DoorDithering.png" width="800"></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FzM-ni0sLRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+<p>通常の透過処理<br>
+<img src="Pictures/Transparent.gif" width="600"></p>
+<p>ディザリングによる透過処理<br>
+<img src="Pictures/Dithering.gif" width="600"></p>
 <p>まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。<br>
 <img src="Pictures/DitherPattern.png" width="426"><br>
 シェーダー側でピクセルを描画する際、描画先のスクリーン座標のX座標とY座標を4で割った余剰を求め、<br>
