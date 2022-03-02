@@ -56,8 +56,7 @@
 
 <details close>
 <summary>担当ソースコード(クリックで開閉)</summary>
-
-* AnimationState.cpp  
+ 
 * AnimationState.h  
 * AttackTutorial.cpp  
 * AttackTutorial.h  
@@ -78,6 +77,8 @@
 * BossTankStatus.h  
 * BossTankTasks.cpp  
 * BossTankTasks.h  
+* ChargeTask.cpp  
+* ChargeTask.h  
 * CommandInput.cpp  
 * CommandInput.h  
 * CutDummy.cpp  
@@ -100,6 +101,8 @@
 * EnemyRock.h  
 * EnemyTask.cpp  
 * EnemyTask.h  
+* EventRollingTask.cpp  
+* EventRollingTask.h  
 * Explosion.cpp  
 * Explosion.h  
 * Fade.cpp  
@@ -108,12 +111,15 @@
 * FontRender.h  
 * GameOverNotifier.cpp  
 * GameOverNotifier.h  
+* GamePhase.cpp  
+* GamePhase.h  
 * GameScene.cpp  
 * GameScene.h  
 * GameSceneBGM.cpp  
 * GameSceneBGM.h  
 * HealItem.cpp  
 * HealItem.h  
+* IPhase.h  
 * ITriangleMaker.h  
 * LightManager.cpp  
 * LightManager.h  
@@ -121,10 +127,24 @@
 * MeshDivider.h  
 * MiniEnemy.cpp  
 * MiniEnemy.h  
+* MissileTask.cpp  
+* MissileTask.h  
 * ModelCutManager.cpp  
 * ModelCutManager.h  
 * OneOnPlaneTriangle.cpp  
 * OneOnPlaneTriangle.h  
+* Phase0.cpp  
+* Phase0.h  
+* Phase1.cpp  
+* Phase1.h  
+* Phase2.cpp  
+* Phase2.h  
+* Phase3.cpp  
+* Phase3.h  
+* Phase4.cpp  
+* Phase4.h  
+* Phase5.cpp  
+* Phase5.h  
 * Player.cpp  
 * Player.h  
 * PlayerAnimation.cpp  
@@ -150,10 +170,13 @@
 * PlayerMoveAnimationState.h  
 * PointLight.cpp  
 * PointLight.h  
+* Priority.h  
 * ProductsDeleter.cpp  
 * ProductsDeleter.h  
 * RenderingEngine.cpp  
 * RenderingEngine.h  
+* RollingTask.cpp  
+* RollingTask.h  
 * ShadowRender.cpp  
 * ShadowRender.h  
 * SkinModelRender.cpp  
@@ -164,6 +187,10 @@
 * SpriteRender.h  
 * StepObject.cpp  
 * StepObject.h  
+* StepTask.cpp  
+* StepTask.h  
+* SummonTask.cpp  
+* SummonTask.h  
 * ThreeOnBackTriangle.cpp  
 * ThreeOnBackTriangle.h  
 * ThreeOnFrontTriangle.cpp  
@@ -172,8 +199,6 @@
 * ThreeOnPlaneTriangle.h  
 * TitleDoor.cpp  
 * TitleDoor.h  
-* TitleScene.cpp  
-* TitleScene.h  
 * TriangleDivider.cpp  
 * TriangleDivider.h  
 * TriangleDividerStruct.h  
@@ -184,6 +209,8 @@
 * TwoOnBackTriangle.h  
 * TwoOnFrontTriangle.cpp  
 * TwoOnFrontTriangle.h  
+* WaitTask.cpp  
+* WaitTask.h  
 
 </details>
 
