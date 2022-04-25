@@ -46,6 +46,9 @@
 # **2. 操作説明**  
   
 <img src="Pictures/NormalControl.png" width="720">  
+
+<br>
+
 <img src="Pictures/CutModeControl.png" width="720">  
 <a id="responsible"></a>  
 
@@ -53,8 +56,7 @@
 
 <details close>
 <summary>担当ソースコード(クリックで開閉)</summary>
-
-* AnimationState.cpp  
+ 
 * AnimationState.h  
 * AttackTutorial.cpp  
 * AttackTutorial.h  
@@ -75,6 +77,8 @@
 * BossTankStatus.h  
 * BossTankTasks.cpp  
 * BossTankTasks.h  
+* ChargeTask.cpp  
+* ChargeTask.h  
 * CommandInput.cpp  
 * CommandInput.h  
 * CutDummy.cpp  
@@ -97,6 +101,8 @@
 * EnemyRock.h  
 * EnemyTask.cpp  
 * EnemyTask.h  
+* EventRollingTask.cpp  
+* EventRollingTask.h  
 * Explosion.cpp  
 * Explosion.h  
 * Fade.cpp  
@@ -105,12 +111,15 @@
 * FontRender.h  
 * GameOverNotifier.cpp  
 * GameOverNotifier.h  
+* GamePhase.cpp  
+* GamePhase.h  
 * GameScene.cpp  
 * GameScene.h  
 * GameSceneBGM.cpp  
 * GameSceneBGM.h  
 * HealItem.cpp  
 * HealItem.h  
+* IPhase.h  
 * ITriangleMaker.h  
 * LightManager.cpp  
 * LightManager.h  
@@ -118,10 +127,24 @@
 * MeshDivider.h  
 * MiniEnemy.cpp  
 * MiniEnemy.h  
+* MissileTask.cpp  
+* MissileTask.h  
 * ModelCutManager.cpp  
 * ModelCutManager.h  
 * OneOnPlaneTriangle.cpp  
 * OneOnPlaneTriangle.h  
+* Phase0.cpp  
+* Phase0.h  
+* Phase1.cpp  
+* Phase1.h  
+* Phase2.cpp  
+* Phase2.h  
+* Phase3.cpp  
+* Phase3.h  
+* Phase4.cpp  
+* Phase4.h  
+* Phase5.cpp  
+* Phase5.h  
 * Player.cpp  
 * Player.h  
 * PlayerAnimation.cpp  
@@ -147,10 +170,13 @@
 * PlayerMoveAnimationState.h  
 * PointLight.cpp  
 * PointLight.h  
+* Priority.h  
 * ProductsDeleter.cpp  
 * ProductsDeleter.h  
 * RenderingEngine.cpp  
 * RenderingEngine.h  
+* RollingTask.cpp  
+* RollingTask.h  
 * ShadowRender.cpp  
 * ShadowRender.h  
 * SkinModelRender.cpp  
@@ -161,6 +187,10 @@
 * SpriteRender.h  
 * StepObject.cpp  
 * StepObject.h  
+* StepTask.cpp  
+* StepTask.h  
+* SummonTask.cpp  
+* SummonTask.h  
 * ThreeOnBackTriangle.cpp  
 * ThreeOnBackTriangle.h  
 * ThreeOnFrontTriangle.cpp  
@@ -169,8 +199,6 @@
 * ThreeOnPlaneTriangle.h  
 * TitleDoor.cpp  
 * TitleDoor.h  
-* TitleScene.cpp  
-* TitleScene.h  
 * TriangleDivider.cpp  
 * TriangleDivider.h  
 * TriangleDividerStruct.h  
@@ -181,6 +209,8 @@
 * TwoOnBackTriangle.h  
 * TwoOnFrontTriangle.cpp  
 * TwoOnFrontTriangle.h  
+* WaitTask.cpp  
+* WaitTask.h  
 
 </details>
 
@@ -219,6 +249,8 @@ FPSの固定処理を追加
 
 技術的な挑戦として、モデル内のメッシュを分割する  
 メッシュ切断を実装した。  
+
+<iframe width="640" height="365" src="https://www.youtube.com/embed/b5prSEbxukI?rel = 0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 
 # シーケンス図による全体の流れ  
 <img src="Pictures/SequenceDiagram.png" width="800">   
@@ -369,6 +401,8 @@ Z軸の値がすべて同じになるため、XY軸の値のみを使う事で2D
 リンクを元にその前後にある頂点も取得し、前にある頂点をA、後にある頂点をCとする。  
 AからBへのベクトルとAからCへのベクトルの外積を計算し、結果が0より大きければ反時計回りである。  
 <img src="Pictures/IsCCW.png" width="800">  
+
+<br>
 時計回りと判定された場合、リンクの順番を反転させる。  
 ここまでの操作で、三角形分割プログラムが使用できる  
 2D座標系で、頂点が反時計回りであるという条件を満たしたため、  
@@ -387,6 +421,15 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 
 切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。  
 <img src="Pictures/DoorDithering.png" width="800">   
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FzM-ni0sLRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
+通常の透過処理  
+<img src="Pictures/Transparent.gif" width="600">  
+
+ディザリングによる透過処理  
+<img src="Pictures/Dithering.gif" width="600">  
+
 
 まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。  
 <img src="Pictures/DitherPattern.png" width="426">  

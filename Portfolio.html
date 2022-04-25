@@ -420,13 +420,13 @@ DirectX12</li>
 <p><a id="operation"></a></p>
 <h1 id="2-%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E"><strong>2. 操作説明</strong></h1>
 <img src="Pictures/NormalControl.png" width="720">  
+<br>
 <img src="Pictures/CutModeControl.png" width="720">  
 <a id="responsible"></a>  
 <h1 id="3-%E6%8B%85%E5%BD%93%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89"><strong>3. 担当ソースコード</strong></h1>
 <details close>
 <summary>担当ソースコード(クリックで開閉)</summary>
 <ul>
-<li>AnimationState.cpp</li>
 <li>AnimationState.h</li>
 <li>AttackTutorial.cpp</li>
 <li>AttackTutorial.h</li>
@@ -447,6 +447,8 @@ DirectX12</li>
 <li>BossTankStatus.h</li>
 <li>BossTankTasks.cpp</li>
 <li>BossTankTasks.h</li>
+<li>ChargeTask.cpp</li>
+<li>ChargeTask.h</li>
 <li>CommandInput.cpp</li>
 <li>CommandInput.h</li>
 <li>CutDummy.cpp</li>
@@ -469,6 +471,8 @@ DirectX12</li>
 <li>EnemyRock.h</li>
 <li>EnemyTask.cpp</li>
 <li>EnemyTask.h</li>
+<li>EventRollingTask.cpp</li>
+<li>EventRollingTask.h</li>
 <li>Explosion.cpp</li>
 <li>Explosion.h</li>
 <li>Fade.cpp</li>
@@ -477,12 +481,15 @@ DirectX12</li>
 <li>FontRender.h</li>
 <li>GameOverNotifier.cpp</li>
 <li>GameOverNotifier.h</li>
+<li>GamePhase.cpp</li>
+<li>GamePhase.h</li>
 <li>GameScene.cpp</li>
 <li>GameScene.h</li>
 <li>GameSceneBGM.cpp</li>
 <li>GameSceneBGM.h</li>
 <li>HealItem.cpp</li>
 <li>HealItem.h</li>
+<li>IPhase.h</li>
 <li>ITriangleMaker.h</li>
 <li>LightManager.cpp</li>
 <li>LightManager.h</li>
@@ -490,10 +497,24 @@ DirectX12</li>
 <li>MeshDivider.h</li>
 <li>MiniEnemy.cpp</li>
 <li>MiniEnemy.h</li>
+<li>MissileTask.cpp</li>
+<li>MissileTask.h</li>
 <li>ModelCutManager.cpp</li>
 <li>ModelCutManager.h</li>
 <li>OneOnPlaneTriangle.cpp</li>
 <li>OneOnPlaneTriangle.h</li>
+<li>Phase0.cpp</li>
+<li>Phase0.h</li>
+<li>Phase1.cpp</li>
+<li>Phase1.h</li>
+<li>Phase2.cpp</li>
+<li>Phase2.h</li>
+<li>Phase3.cpp</li>
+<li>Phase3.h</li>
+<li>Phase4.cpp</li>
+<li>Phase4.h</li>
+<li>Phase5.cpp</li>
+<li>Phase5.h</li>
 <li>Player.cpp</li>
 <li>Player.h</li>
 <li>PlayerAnimation.cpp</li>
@@ -519,10 +540,13 @@ DirectX12</li>
 <li>PlayerMoveAnimationState.h</li>
 <li>PointLight.cpp</li>
 <li>PointLight.h</li>
+<li>Priority.h</li>
 <li>ProductsDeleter.cpp</li>
 <li>ProductsDeleter.h</li>
 <li>RenderingEngine.cpp</li>
 <li>RenderingEngine.h</li>
+<li>RollingTask.cpp</li>
+<li>RollingTask.h</li>
 <li>ShadowRender.cpp</li>
 <li>ShadowRender.h</li>
 <li>SkinModelRender.cpp</li>
@@ -533,6 +557,10 @@ DirectX12</li>
 <li>SpriteRender.h</li>
 <li>StepObject.cpp</li>
 <li>StepObject.h</li>
+<li>StepTask.cpp</li>
+<li>StepTask.h</li>
+<li>SummonTask.cpp</li>
+<li>SummonTask.h</li>
 <li>ThreeOnBackTriangle.cpp</li>
 <li>ThreeOnBackTriangle.h</li>
 <li>ThreeOnFrontTriangle.cpp</li>
@@ -541,8 +569,6 @@ DirectX12</li>
 <li>ThreeOnPlaneTriangle.h</li>
 <li>TitleDoor.cpp</li>
 <li>TitleDoor.h</li>
-<li>TitleScene.cpp</li>
-<li>TitleScene.h</li>
 <li>TriangleDivider.cpp</li>
 <li>TriangleDivider.h</li>
 <li>TriangleDividerStruct.h</li>
@@ -553,6 +579,8 @@ DirectX12</li>
 <li>TwoOnBackTriangle.h</li>
 <li>TwoOnFrontTriangle.cpp</li>
 <li>TwoOnFrontTriangle.h</li>
+<li>WaitTask.cpp</li>
+<li>WaitTask.h</li>
 </ul>
 </details>
 <p><a id="enginecode"></a></p>
@@ -586,6 +614,7 @@ FPSの固定処理を追加</li>
 <h1 id="5-%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5%E5%88%87%E6%96%AD"><strong>5. メッシュ切断</strong></h1>
 <p>技術的な挑戦として、モデル内のメッシュを分割する<br>
 メッシュ切断を実装した。</p>
+<iframe width="640" height="365" src="https://www.youtube.com/embed/b5prSEbxukI?rel = 0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 <h1 id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AB%E3%82%88%E3%82%8B%E5%85%A8%E4%BD%93%E3%81%AE%E6%B5%81%E3%82%8C">シーケンス図による全体の流れ</h1>
 <img src="Pictures/SequenceDiagram.png" width="800">   
 <h1 id="%E5%90%84%E6%89%8B%E9%A0%86%E3%81%AE%E8%A9%B3%E7%B4%B0">各手順の詳細</h1>
@@ -709,6 +738,11 @@ AからBへのベクトルとAからCへのベクトルの外積を計算し、�
 <h1 id="6%E3%83%87%E3%82%A3%E3%82%B6%E3%83%AA%E3%83%B3%E3%82%B0%E9%80%8F%E9%81%8E"><strong>6.ディザリング透過</strong></h1>
 <p>切断したモデルが消滅する際、ディザリング透過によって少しずつ透明化していくようにしている。<br>
 <img src="Pictures/DoorDithering.png" width="800"></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FzM-ni0sLRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+<p>通常の透過処理<br>
+<img src="Pictures/Transparent.gif" width="600"></p>
+<p>ディザリングによる透過処理<br>
+<img src="Pictures/Dithering.gif" width="600"></p>
 <p>まず、事前にディザパターンと呼ばれる4✕4の二次元配列を定義しておく。<br>
 <img src="Pictures/DitherPattern.png" width="426"><br>
 シェーダー側でピクセルを描画する際、描画先のスクリーン座標のX座標とY座標を4で割った余剰を求め、<br>
